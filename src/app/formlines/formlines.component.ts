@@ -26,9 +26,6 @@ export class FormlinesComponent implements OnInit {
   }
 
   filterForm = filter => {
-    console.log("filterForm invoked in formlines component");
-    console.log(filter);
-
     if (filter !== undefined) {
       let newFormLines = this.orgFormLines;
 
