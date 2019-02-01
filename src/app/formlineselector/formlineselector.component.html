@@ -1,0 +1,62 @@
+<div class="container mb-3 mt-3">
+  <app-selector
+    #runs
+    title="Runs"
+    (onChangeCallback)="onChanged($event)"
+  ></app-selector>
+  <app-selector
+    #wins
+    title="Wins"
+    (onChangeCallback)="onChanged($event)"
+  ></app-selector>
+  <app-selector
+    #placed
+    title="Placed"
+    (onChangeCallback)="onChanged($event)"
+  ></app-selector>
+  <app-percentselector
+    #winpct
+    title="Win%"
+    (onChangeCallback)="onChanged($event)"
+  ></app-percentselector>
+  <app-percentselector
+    #placedpct
+    title="Placed%"
+    (onChangeCallback)="onChanged($event)"
+  ></app-percentselector>
+  <app-profitlossselector
+    #winpl
+    title="Win PL"
+    (onChangeCallback)="onChanged($event)"
+  ></app-profitlossselector>
+  <app-profitlossselector
+    #placedpl
+    title="Placed PL"
+    (onChangeCallback)="onChanged($event)"
+  ></app-profitlossselector>
+  <app-ivselector
+    #iv
+    title="IV"
+    (onChangeCallback)="onChanged($event)"
+  ></app-ivselector>
+  <app-ivselector
+    #ae
+    title="AE"
+    (onChangeCallback)="onChanged($event)"
+  ></app-ivselector>
+
+  <button
+    class="btn btn-outline-success mb-3 mr-3"
+    style="height: 70px"
+    (click)="updateClick($event)"
+  >
+    Update
+  </button>
+  <button
+    class="btn btn-outline-warning mb-3"
+    style="height: 70px; min-width: 80px"
+    (click)="resetClick($event)"
+  >
+    Reset
+  </button>
+</div>
