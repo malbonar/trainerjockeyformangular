@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { TrainerJockey } from "../Models/TrainerJockey";
 
 const apiUrl =
-  "http://malstissue.azurewebsites.net/api/TrainerJockeyFormLines/Get14DayForm";
+  "https://malstissue.azurewebsites.net/api/TrainerJockeyFormLines/Get14DayForm";
 
 @Injectable({
   providedIn: "root"
