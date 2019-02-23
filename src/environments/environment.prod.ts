@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: "https://malstissue.azurewebsites.net/api/"
+  apiUrl: "https://mbsoftwarehorseracingcoreapi.azurewebsites.net/api/"
 };

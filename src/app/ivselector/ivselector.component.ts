@@ -1,9 +1,9 @@
-import { Component, OnInit, EventEmitter, Input, Output } from "@angular/core";
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: "app-ivselector",
-  templateUrl: "./ivselector.component.html",
-  styleUrls: ["./ivselector.component.css"]
+  selector: 'app-ivselector',
+  templateUrl: './ivselector.component.html',
+  styleUrls: ['./ivselector.component.css']
 })
 export class IvselectorComponent implements OnInit {
   @Input() title: string;

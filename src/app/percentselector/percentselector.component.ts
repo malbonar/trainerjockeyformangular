@@ -1,9 +1,9 @@
-import { Component, OnInit, EventEmitter, Input, Output } from "@angular/core";
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: "app-percentselector",
-  templateUrl: "./percentselector.component.html",
-  styleUrls: ["./percentselector.component.css"]
+  selector: 'app-percentselector',
+  templateUrl: './percentselector.component.html',
+  styleUrls: ['./percentselector.component.css']
 })
 export class PercentselectorComponent implements OnInit {
   @Input() title: string;

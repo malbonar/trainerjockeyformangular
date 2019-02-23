@@ -1,10 +1,10 @@
-import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
-import { HttpClientModule } from "@angular/common/http";
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
-import { AppRoutingModule } from "./app-routing.module";
-import { AppComponent } from "./app.component";
-import { FormlinesComponent } from "./formlines/formlines.component";
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { FormlinesComponent } from './formlines/formlines.component';
 import { SelectorComponent } from './selector/selector.component';
 import { ProfitlossselectorComponent } from './profitlossselector/profitlossselector.component';
 import { PercentselectorComponent } from './percentselector/percentselector.component';
@@ -15,7 +15,18 @@ import { AboutComponent } from './about/about.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 @NgModule({
-  declarations: [AppComponent, FormlinesComponent, SelectorComponent, ProfitlossselectorComponent, PercentselectorComponent, IvselectorComponent, FormlineselectorComponent, TrainerjockeyreportComponent, AboutComponent, PagenotfoundComponent],
+  declarations: [
+    AppComponent,
+    FormlinesComponent,
+    SelectorComponent,
+    ProfitlossselectorComponent,
+    PercentselectorComponent,
+    IvselectorComponent,
+    FormlineselectorComponent,
+    TrainerjockeyreportComponent,
+    AboutComponent,
+    PagenotfoundComponent
+  ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent]

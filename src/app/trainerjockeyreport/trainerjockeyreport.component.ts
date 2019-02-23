@@ -1,23 +1,26 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from "@angular/core";
-import { FormlinesComponent } from "../formlines/formlines.component";
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { FormlinesComponent } from '../formlines/formlines.component';
 
 @Component({
-  selector: "app-trainerjockeyreport",
-  templateUrl: "./trainerjockeyreport.component.html",
-  styleUrls: ["./trainerjockeyreport.component.css"]
+  selector: 'app-trainerjockeyreport',
+  templateUrl: './trainerjockeyreport.component.html',
+  styleUrls: ['./trainerjockeyreport.component.css']
 })
 export class TrainerjockeyreportComponent implements OnInit, AfterViewInit {
   @ViewChild(FormlinesComponent) child: FormlinesComponent;
   filter: any;
-  isReset: boolean = false;
+  isReset = false;
 
   constructor() {}
 
   ngOnInit() {}
 
   ngAfterViewInit() {
-    if (!this.isReset) this.child.filterForm(this.filter);
-    else this.child.reset();
+    if (!this.isReset) {
+      this.child.filterForm(this.filter);
+    } else {
+      this.child.reset();
+    }
   }
 
   onUpdate = selection => {

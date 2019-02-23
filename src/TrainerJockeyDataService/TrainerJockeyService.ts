@@ -4,7 +4,7 @@ import { environment } from "../environments/environment";
 
 import { TrainerJockey } from "../Models/TrainerJockey";
 
-const apiUrl = environment.apiUrl + "TrainerJockeyFormLines/Get14DayForm";
+const apiUrl = environment.apiUrl + "TrainerJockeyForm";
 
 @Injectable({
   providedIn: "root"

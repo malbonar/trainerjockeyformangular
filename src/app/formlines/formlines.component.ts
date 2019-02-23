@@ -1,13 +1,12 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input } from '@angular/core';
 
-import { TrainerJockey } from "../../Models/TrainerJockey";
-import { TrainerJockeyService } from "../../TrainerJockeyDataService/TrainerJockeyService";
-import { pureFunction1 } from "@angular/core/src/render3";
+import { TrainerJockey } from '../../Models/TrainerJockey';
+import { TrainerJockeyService } from '../../TrainerJockeyDataService/TrainerJockeyService';
 
 @Component({
-  selector: "app-formlines",
-  templateUrl: "./formlines.component.html",
-  styleUrls: ["./formlines.component.css"]
+  selector: 'app-formlines',
+  templateUrl: './formlines.component.html',
+  styleUrls: ['./formlines.component.css']
 })
 export class FormlinesComponent implements OnInit {
   orgFormLines: TrainerJockey[]; // need from initial data load
@@ -29,65 +28,73 @@ export class FormlinesComponent implements OnInit {
     if (filter !== undefined) {
       let newFormLines = this.orgFormLines;
 
-      if (!isNaN(filter.runs) && filter.runs !== "" && filter.runs > 0)
+      if (!isNaN(filter.runs) && filter.runs !== '' && filter.runs > 0) {
         newFormLines = newFormLines.filter(
-          formline => formline.Runs >= filter.runs
+          formline => formline.runs >= filter.runs
         );
+      }
 
-      if (!isNaN(filter.wins) && filter.wins !== "" && filter.wins > 0)
+      if (!isNaN(filter.wins) && filter.wins !== '' && filter.wins > 0) {
         newFormLines = newFormLines.filter(
-          formline => formline.Wins >= filter.wins
+          formline => formline.wins >= filter.wins
         );
+      }
 
-      if (!isNaN(filter.placed) && filter.placed !== "" && filter.placed > 0)
+      if (!isNaN(filter.placed) && filter.placed !== '' && filter.placed > 0) {
         newFormLines = newFormLines.filter(
-          formline => formline.Placed >= filter.placed
+          formline => formline.placed >= filter.placed
         );
+      }
 
       if (
         !isNaN(filter.winPercent) &&
-        filter.winPercent !== "" &&
+        filter.winPercent !== '' &&
         filter.winPercent > 0
-      )
+      ) {
         newFormLines = newFormLines.filter(
-          formline => formline.WinPercent >= filter.winPercent
+          formline => formline.winPercent >= filter.winPercent
         );
+      }
 
       if (
         !isNaN(filter.placedPercent) &&
-        filter.placedPercent !== "" &&
+        filter.placedPercent !== '' &&
         filter.placedPercent > 0
-      )
+      ) {
         newFormLines = newFormLines.filter(
-          formline => formline.PlacedPercent >= filter.placedPercent
+          formline => formline.placedPercent >= filter.placedPercent
         );
+      }
 
       if (
         !isNaN(filter.winProfitLoss) &&
-        filter.winProfitLoss !== "" &&
+        filter.winProfitLoss !== '' &&
         filter.winProfitLoss > -1000
-      )
+      ) {
         newFormLines = newFormLines.filter(
-          formline => formline.WinProfitLoss >= filter.winProfitLoss
+          formline => formline.winProfitLoss >= filter.winProfitLoss
         );
+      }
 
       if (
         !isNaN(filter.placedProfitLoss) &&
-        filter.placedProfitLoss !== "" &&
+        filter.placedProfitLoss !== '' &&
         filter.placedProfitLoss > -1000
-      )
+      ) {
         newFormLines = newFormLines.filter(
-          formline => formline.PlacedProfitLoss >= filter.placedProfitLoss
+          formline => formline.placedProfitLoss >= filter.placedProfitLoss
         );
+      }
 
-      if (!isNaN(filter.AE) && filter.AE !== "" && filter.AE > 0)
+      if (!isNaN(filter.AE) && filter.AE !== '' && filter.AE > 0) {
         newFormLines = newFormLines.filter(
-          formline => formline.AE >= filter.AE
+          formline => formline.ae >= filter.AE
         );
+      }
 
-      if (!isNaN(filter.IV) && filter.IV !== "" && filter.IV > 0) {
+      if (!isNaN(filter.IV) && filter.IV !== '' && filter.IV > 0) {
         newFormLines = newFormLines.filter(
-          formline => formline.IV >= filter.IV
+          formline => formline.iv >= filter.IV
         );
       }
 

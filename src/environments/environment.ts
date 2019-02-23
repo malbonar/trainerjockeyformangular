@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: "http://malstissue.azurewebsites.net/api/"
+  apiUrl: 'https://localhost:44303/api/'
 };
 
 /*
