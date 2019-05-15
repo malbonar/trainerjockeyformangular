@@ -3,9 +3,16 @@ build with 'ng build --prod --base-href="/trainerjockeyformangular/"
 then deploy with 'ngh'
 last command comes from package angular-cli-ghpages
 
-GIT:
+
+GIT - Initial setup:
 git add .
 git commit -m "initiasl commit"
 git remote add origin https://github.com/<name>/trainerjockeyformangular.git
 git remote -v
 git push origin master
+
+GIT - deploy:
+* open vscode as administrator
+* ng build --prod --base-href="/trainerjockeyformangular/"
+* ngh
+

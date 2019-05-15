@@ -100,9 +100,9 @@ export class FormlinesComponent implements OnInit {
 
       this.formLines = newFormLines;
     }
-  };
+  }
 
   reset = () => {
     this.formLines = this.orgFormLines;
-  };
+  }
 }
