@@ -1,0 +1,10 @@
+<label
+  class="selector pt-2 pb-3 px-1 mr-3"
+  style="border: solid; border-color: #A8A8A8; border-width: 1px; text-align: center; min-width: 68px; font-weight: bold; font-size: 0.92em"
+>
+  {{ title }} <br />
+  <select value="{{ value }}" (change)="changed($event.target.value)">
+    <option selected value="14">last 14 days</option>
+    <option value="30">last 30 days</option></select
+  >
+</label>

@@ -1,18 +1,18 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { environment } from "../environments/environment";
+import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../environments/environment';
+import { TrainerJockey } from '../Models/TrainerJockey';
 
-import { TrainerJockey } from "../Models/TrainerJockey";
-
-const apiUrl = environment.apiUrl + "TrainerJockeyForm";
+const apiUrl = environment.apiUrl + 'TrainerJockeyForm';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class TrainerJockeyService {
   constructor(private http: HttpClient) {}
 
-  getTrainerJockeyForm() {
-    return this.http.get<TrainerJockey[]>(apiUrl);
+  getTrainerJockeyForm(days: number): Observable<TrainerJockey[]> {
+    return this.http.get<TrainerJockey[]>(`${apiUrl}?days=${days}&racedate=${new Date().toISOString().slice(0, 10)}`);
   }
 }

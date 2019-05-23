@@ -15,7 +15,7 @@ export class SelectorComponent implements OnInit {
   changed = e => {
     this.value = e;
     this.onChangeCallback.emit({ source: this.title, value: this.value });
-  };
+  }
 
   ngOnInit() {}
 }

@@ -26,11 +26,15 @@ export class TrainerjockeyreportComponent implements OnInit, AfterViewInit {
   onUpdate = selection => {
     this.filter = selection;
     this.ngAfterViewInit();
-  };
+  }
 
   onReset = () => {
     this.isReset = true;
     this.ngAfterViewInit();
     this.isReset = false;
-  };
+  }
+
+  onPeriodChanged = selection => {
+    this.child.periodChanged(selection);
+  }
 }

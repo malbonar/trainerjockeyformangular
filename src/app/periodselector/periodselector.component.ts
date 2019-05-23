@@ -1,16 +1,16 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-percentselector',
-  templateUrl: './percentselector.component.html',
-  styleUrls: ['./percentselector.component.css']
+  selector: 'app-periodselector',
+  templateUrl: './periodselector.component.html',
+  styleUrls: ['./periodselector.component.css']
 })
-export class PercentselectorComponent implements OnInit {
+export class PeriodselectorComponent implements OnInit {
   @Input() title: string;
   @Input() value: string;
   @Output() onChangeCallback: EventEmitter<any> = new EventEmitter();
 
-  constructor() {}
+  constructor() { }
 
   changed = e => {
     this.value = e;

@@ -1,4 +1,4 @@
-<div class="container mb-3 mt-3">
+<div class="container mt-3">
   <app-selector
     #runs
     title="Runs"
@@ -45,13 +45,12 @@
     (onChangeCallback)="onChanged($event)"
   ></app-ivselector>
 
-  <button
-    class="btn btn-outline-success mb-3 mr-3"
-    style="height: 70px"
-    (click)="updateClick()"
-  >
-    Update
-  </button>
+  <app-periodselector
+    #period
+    title="Period"
+    (onChangeCallback)="onChanged($event)"
+  ></app-periodselector> 
+
   <button
     class="btn btn-outline-warning mb-3"
     style="height: 70px; min-width: 80px"

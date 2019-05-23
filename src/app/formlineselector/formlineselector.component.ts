@@ -10,6 +10,7 @@ import { SelectorComponent } from '../selector/selector.component';
 import { PercentselectorComponent } from '../percentselector/percentselector.component';
 import { ProfitlossselectorComponent } from '../profitlossselector/profitlossselector.component';
 import { IvselectorComponent } from '../ivselector/ivselector.component';
+import { PeriodselectorComponent } from '../periodselector/periodselector.component';
 
 @Component({
   selector: 'app-formlineselector',
@@ -19,6 +20,7 @@ import { IvselectorComponent } from '../ivselector/ivselector.component';
 export class FormlineselectorComponent implements OnInit, AfterViewInit {
   @Output() onUpdateCallback: EventEmitter<any> = new EventEmitter<any>();
   @Output() onResetCallback: EventEmitter<any> = new EventEmitter<any>();
+  @Output() onPeriodChangedCallback: EventEmitter<any> = new EventEmitter<any>();
 
   @ViewChild('runs') runSelector: SelectorComponent;
   @ViewChild('wins') winsSelector: SelectorComponent;
@@ -29,6 +31,7 @@ export class FormlineselectorComponent implements OnInit, AfterViewInit {
   @ViewChild('placedpl') placedplSelector: ProfitlossselectorComponent;
   @ViewChild('iv') ivSelector: IvselectorComponent;
   @ViewChild('ae') aeSelector: IvselectorComponent;
+  @ViewChild('period') periodSelector: PeriodselectorComponent;
 
   filter = {
     runs: '',
@@ -39,23 +42,29 @@ export class FormlineselectorComponent implements OnInit, AfterViewInit {
     winProfitLoss: '',
     placedProfitLoss: '',
     AE: '',
-    IV: ''
+    IV: '',
+    days: '14'
   };
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit() {}
 
   ngAfterViewInit() {
-    this.runSelector.value = '';
-    this.winsSelector.value = '';
-    this.placedSelector.value = '';
-    this.winpctSelector.value = '';
-    this.placedpctSelector.value = '';
-    this.winplSelector.value = '';
-    this.placedplSelector.value = '';
-    this.ivSelector.value = '';
-    this.aeSelector.value = '';
+    setTimeout(() => {
+        this.runSelector.value = '';
+        this.winsSelector.value = '';
+        this.placedSelector.value = '';
+        this.winpctSelector.value = '';
+        this.placedpctSelector.value = '';
+        this.winplSelector.value = '';
+        this.placedplSelector.value = '';
+        this.ivSelector.value = '';
+        this.aeSelector.value = '';
+        // this assignment was causing the 'Expression has changed after it was checked' error,
+        // which is resolved with the setTimeout and waiting another turn
+        this.periodSelector.value = this.filter.days.toString();
+    });
   }
 
   onChanged(e) {
@@ -64,42 +73,56 @@ export class FormlineselectorComponent implements OnInit, AfterViewInit {
     switch (source) {
       case 'Runs':
         this.filter.runs = value;
+        this.onUpdateCallback.emit(this.filter);
         break;
       case 'Wins':
         this.filter.wins = value;
+        this.onUpdateCallback.emit(this.filter);
         break;
       case 'Placed':
         this.filter.placed = value;
+        this.onUpdateCallback.emit(this.filter);
         break;
       case 'Win%':
         this.filter.winPercent = value;
+        this.onUpdateCallback.emit(this.filter);
         break;
       case 'Placed%':
         this.filter.placedPercent = value;
+        this.onUpdateCallback.emit(this.filter);
         break;
       case 'Win PL':
         this.filter.winProfitLoss = value;
+        this.onUpdateCallback.emit(this.filter);
         break;
       case 'Placed PL':
         this.filter.placedProfitLoss = value;
+        this.onUpdateCallback.emit(this.filter);
         break;
       case 'AE':
         this.filter.AE = value;
+        this.onUpdateCallback.emit(this.filter);
         break;
       case 'IV':
         this.filter.IV = value;
+        this.onUpdateCallback.emit(this.filter);
+        break;
+      case 'Period':
+        this.filter.days = value;
+        this.onPeriodChangedCallback.emit(this.filter); // update as soon as this is changed
+        this.ngAfterViewInit();
         break;
       default:
         break;
     }
   }
 
-  updateClick() {
-    this.onUpdateCallback.emit(this.filter);
-  }
+  // updateClick() {
+  //   this.onUpdateCallback.emit(this.filter);
+  // }
 
   resetClick = () => {
     this.onResetCallback.emit();
     this.ngAfterViewInit();
-  };
+  }
 }
