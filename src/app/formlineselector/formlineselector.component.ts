@@ -46,25 +46,29 @@ export class FormlineselectorComponent implements OnInit, AfterViewInit {
     days: '14'
   };
 
+  reset = () => {
+    setTimeout(() => {
+      this.runSelector.value = '';
+      this.winsSelector.value = '';
+      this.placedSelector.value = '';
+      this.winpctSelector.value = '';
+      this.placedpctSelector.value = '';
+      this.winplSelector.value = '';
+      this.placedplSelector.value = '';
+      this.ivSelector.value = '';
+      this.aeSelector.value = '';
+      // this assignment was causing the 'Expression has changed after it was checked' error,
+      // which is resolved with the setTimeout and waiting another turn
+      this.periodSelector.value = this.filter.days.toString();
+  });
+  }
+
   constructor() { }
 
   ngOnInit() {}
 
   ngAfterViewInit() {
-    setTimeout(() => {
-        this.runSelector.value = '';
-        this.winsSelector.value = '';
-        this.placedSelector.value = '';
-        this.winpctSelector.value = '';
-        this.placedpctSelector.value = '';
-        this.winplSelector.value = '';
-        this.placedplSelector.value = '';
-        this.ivSelector.value = '';
-        this.aeSelector.value = '';
-        // this assignment was causing the 'Expression has changed after it was checked' error,
-        // which is resolved with the setTimeout and waiting another turn
-        this.periodSelector.value = this.filter.days.toString();
-    });
+    this.reset();
   }
 
   onChanged(e) {
@@ -110,19 +114,15 @@ export class FormlineselectorComponent implements OnInit, AfterViewInit {
       case 'Period':
         this.filter.days = value;
         this.onPeriodChangedCallback.emit(this.filter); // update as soon as this is changed
-        this.ngAfterViewInit();
+        this.reset();
         break;
       default:
         break;
     }
   }
 
-  // updateClick() {
-  //   this.onUpdateCallback.emit(this.filter);
-  // }
-
   resetClick = () => {
     this.onResetCallback.emit();
-    this.ngAfterViewInit();
+    this.reset();
   }
 }

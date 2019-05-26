@@ -1,3 +1,8 @@
 * {
   font-family: Open Sans;
 }
+
+label {
+    padding-left: 5px; 
+    padding-right: 5px;
+}

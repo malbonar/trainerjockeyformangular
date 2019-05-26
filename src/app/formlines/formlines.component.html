@@ -1,38 +1,39 @@
 <div class="container">
   <div *ngIf="loading; else elseBlock">Fetching Trainer Jockey data</div>
   <ng-template #elseBlock>
-    
-    <table class="table table-striped table-sm table-bordered">
-      <thead>
-        <tr>
-          <th>Trainer</th>
-          <th>Jockey</th>
-          <th>Runs</th>
-          <th>Wins</th>
-          <th>Places</th>
-          <th>Win%</th>
-          <th>Place%</th>
-          <th>Win P/L</th>
-          <th>EW P/L</th>
-          <th>A/E</th>
-          <th>IV</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let formLine of formLines">
-          <td>{{ formLine.trainer }}</td>
-          <td>{{ formLine.jockey }}</td>
-          <td>{{ formLine.runs }}</td>
-          <td>{{ formLine.wins }}</td>
-          <td>{{ formLine.placed }}</td>
-          <td>{{ formLine.winPercent }}</td>
-          <td>{{ formLine.placedPercent }}</td>
-          <td>{{ formLine.winProfitLoss }}</td>
-          <td>{{ formLine.placedProfitLoss }}</td>
-          <td>{{ formLine.ae }}</td>
-          <td>{{ formLine.iv }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-responsive">
+      <table class="table table-striped table-sm table-bordered">
+        <thead>
+          <tr>
+            <th>Trainer</th>
+            <th>Jockey</th>
+            <th>Runs</th>
+            <th>Wins</th>
+            <th>Places</th>
+            <th>Win%</th>
+            <th>Place%</th>
+            <th>Win P/L</th>
+            <th>EW P/L</th>
+            <th>A/E</th>
+            <th>IV</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let formLine of formLines">
+            <td>{{ formLine.trainer }}</td>
+            <td>{{ formLine.jockey }}</td>
+            <td>{{ formLine.runs }}</td>
+            <td>{{ formLine.wins }}</td>
+            <td>{{ formLine.placed }}</td>
+            <td>{{ formLine.winPercent }}</td>
+            <td>{{ formLine.placedPercent }}</td>
+            <td>{{ formLine.winProfitLoss }}</td>
+            <td>{{ formLine.placedProfitLoss }}</td>
+            <td>{{ formLine.ae }}</td>
+            <td>{{ formLine.iv }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </ng-template>
 </div>
