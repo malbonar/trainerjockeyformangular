@@ -62,9 +62,7 @@ export class FormlinesComponent implements OnInit {
 
   load(callback) {
     this.loading = true;
-    console.log('calling service to fetch data');
     this.service.getTrainerJockeyForm(this.periodDays).subscribe(callback).add(() => this.loading = false);
-    console.log('service called');
   }
 
   constructor(private service: TrainerJockeyService) {
@@ -72,7 +70,6 @@ export class FormlinesComponent implements OnInit {
 
   ngOnInit() {
     this.load(formlines => {
-      console.log('In service callback from ngOnInit');
       this.formLines = formlines;
       this.orgFormLines = formlines;
     });
@@ -91,7 +88,6 @@ export class FormlinesComponent implements OnInit {
   periodChanged = filter => {
     this.periodDays = filter.days;
     this.load(formlines => {
-      console.log('In service callback from periodChanged');
       this.formLines = formlines;
       this.orgFormLines = formlines;
     });

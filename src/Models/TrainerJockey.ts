@@ -1,4 +1,7 @@
+import { TrainerJockeyHorse } from './TrainerJockeyHorse';
+
 export class TrainerJockey {
+  trainerJockeyComboFormEntityId: number;
   trainer: string;
   jockey: string;
   runs: number;
@@ -11,4 +14,5 @@ export class TrainerJockey {
   ae: number;
   iv: number;
   formType: string;
+  trainerJockeyComboFormHorse: TrainerJockeyHorse[];
 }
