@@ -20,7 +20,7 @@
           </tr>
         </thead>
         <tbody *ngFor="let formLine of formLines">
-            <tr class="clickable" 
+            <tr class="clickable" (shown.bs.collapse)="shownEvent()"
                 [attr.id]="'row' + formLine.trainerJockeyComboFormEntityId" 
                 data-toggle="collapse"                
                 [attr.data-target]="'.row' + formLine.trainerJockeyComboFormEntityId">
@@ -37,7 +37,8 @@
               <td class="cell">{{ formLine.ae }}</td>
               <td class="cell">{{ formLine.iv }}</td>
             </tr>
-            <tr [attr.class]="'collapse cell row' + formLine.trainerJockeyComboFormEntityId">
+            <tr (shown.bs.collapse)="shownEvent()"
+                [attr.class]="'collapse cell row' + formLine.trainerJockeyComboFormEntityId">
               <td colspan="12">
                 <table class="table table-sm table-bordered">
                 <thead>

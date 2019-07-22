@@ -62,7 +62,20 @@ export class FormlinesComponent implements OnInit {
 
   load(callback) {
     this.loading = true;
-    this.service.getTrainerJockeyForm(this.periodDays).subscribe(callback).add(() => this.loading = false);
+    this.service.getTrainerJockeyForm(this.periodDays)
+      .then(res => {
+        this.loading = false;
+        const data: TrainerJockey[] = JSON.parse(JSON.stringify(res));
+        this.formLines = data;
+        this.orgFormLines = data;
+      })
+      .catch(err => {
+        this.loading = false;
+        // check for status code 401 unauthorized
+        if (err.status === 401 || err.status === 403) {
+          localStorage.removeItem(this.service.localStorageTokenKey);
+        }
+      });
   }
 
   constructor(private service: TrainerJockeyService) {
