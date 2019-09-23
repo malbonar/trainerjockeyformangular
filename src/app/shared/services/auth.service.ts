@@ -81,7 +81,7 @@ export class AuthService {
     );
     // Subscribe to authentication completion observable
     // Response will be an array of user and login status
-    authComplete$.subscribe(([user, loggedIn]) => {
+    authComplete$.subscribe(([user, loggedIn]: boolean[]) => {
       // Redirect to target route after callback processing
       this.router.navigate([targetRoute]);
     });

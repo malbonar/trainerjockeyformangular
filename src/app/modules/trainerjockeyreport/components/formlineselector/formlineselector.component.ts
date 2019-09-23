@@ -22,16 +22,16 @@ export class FormlineselectorComponent implements OnInit, AfterViewInit {
   @Output() onResetCallback: EventEmitter<any> = new EventEmitter<any>();
   @Output() onPeriodChangedCallback: EventEmitter<any> = new EventEmitter<any>();
 
-  @ViewChild('runs') runSelector: SelectorComponent;
-  @ViewChild('wins') winsSelector: SelectorComponent;
-  @ViewChild('placed') placedSelector: SelectorComponent;
-  @ViewChild('winpct') winpctSelector: PercentselectorComponent;
-  @ViewChild('placedpct') placedpctSelector: PercentselectorComponent;
-  @ViewChild('winpl') winplSelector: ProfitlossselectorComponent;
-  @ViewChild('placedpl') placedplSelector: ProfitlossselectorComponent;
-  @ViewChild('iv') ivSelector: IvselectorComponent;
-  @ViewChild('ae') aeSelector: IvselectorComponent;
-  @ViewChild('period') periodSelector: PeriodselectorComponent;
+  @ViewChild('runs', { static: true }) runSelector: SelectorComponent;
+  @ViewChild('wins', { static: true }) winsSelector: SelectorComponent;
+  @ViewChild('placed', { static: true }) placedSelector: SelectorComponent;
+  @ViewChild('winpct', { static: true }) winpctSelector: PercentselectorComponent;
+  @ViewChild('placedpct', { static: true }) placedpctSelector: PercentselectorComponent;
+  @ViewChild('winpl', { static: true }) winplSelector: ProfitlossselectorComponent;
+  @ViewChild('placedpl', { static: true }) placedplSelector: ProfitlossselectorComponent;
+  @ViewChild('iv', { static: true }) ivSelector: IvselectorComponent;
+  @ViewChild('ae', { static: true }) aeSelector: IvselectorComponent;
+  @ViewChild('period', { static: true }) periodSelector: PeriodselectorComponent;
 
   filter = {
     runs: '',

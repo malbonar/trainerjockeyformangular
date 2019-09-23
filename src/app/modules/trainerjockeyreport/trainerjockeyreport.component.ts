@@ -7,7 +7,7 @@ import { FormlinesComponent } from './components/formlines/formlines.component';
   styleUrls: ['./trainerjockeyreport.component.css']
 })
 export class TrainerjockeyreportComponent implements OnInit, AfterViewInit {
-  @ViewChild(FormlinesComponent) child: FormlinesComponent;
+  @ViewChild(FormlinesComponent, { static: true }) child: FormlinesComponent;
   filter: any;
   isReset = false;
 
