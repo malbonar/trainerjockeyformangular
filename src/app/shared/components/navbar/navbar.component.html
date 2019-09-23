@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-success mb-3 py-0">
+    <div class="container">
+      <div class="navbar-brand">{{ title }}</div>
+      <div>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="home">
+              <i class="fa fa-home"></i> Home</a
+            >
+          </li>
+          <li class="nav-item dropdown">
+            <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">
+              <i></i> Form Analysis</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" routerLink="trainerjockeyreport">Trainer Jockey Report</a>
+              </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown">
+              <i class="fas fas-question"></i> Admin</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" *ngIf="auth.loggedIn === false" (click)="auth.login()"> Login</a>
+                <a class="dropdown-item" *ngIf="auth.loggedIn === true" routerLink="raceresultloadstatus" routerLinkActive="router-link-active"  >Race Result Load Status</a>
+                <a class="dropdown-item" *ngIf="auth.loggedIn === true" (click)="auth.logout()" > Logout</a>
+              </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="about">
+              <i class="fa fa-question"></i> About</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>

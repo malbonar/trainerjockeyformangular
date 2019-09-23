@@ -22,7 +22,7 @@
         <tbody *ngFor="let formLine of formLines">
             <tr class="clickable" (shown.bs.collapse)="shownEvent()"
                 [attr.id]="'row' + formLine.trainerJockeyComboFormEntityId" 
-                data-toggle="collapse"                
+                data-toggle="collapse" href="#"               
                 [attr.data-target]="'.row' + formLine.trainerJockeyComboFormEntityId">
               <td class="cell"><i class="pi pi-plus cell" style="font-size: 0.95em"></i></td>
               <td class="cell">{{ formLine.trainer }}</td>

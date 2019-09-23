@@ -1,7 +1,8 @@
 
-import { Component, OnInit, Input } from '@angular/core';
-import { TrainerJockey } from '../../Models/TrainerJockey';
-import { TrainerJockeyService } from '../../TrainerJockeyDataService/TrainerJockeyService';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { TrainerJockey } from '../../models/TrainerJockey';
+import { TrainerJockeyService } from '../../services/TrainerJockeyService';
 
 @Component({
   selector: 'app-formlines',
@@ -13,6 +14,8 @@ export class FormlinesComponent implements OnInit {
   formLines: TrainerJockey[]; // data bound to this
   loading: Boolean = false;
   periodDays = 14;
+
+  constructor(private service: TrainerJockeyService, private router: Router) {}
 
   runFilter = filter => {
     let newFormLines = this.orgFormLines;
@@ -60,32 +63,28 @@ export class FormlinesComponent implements OnInit {
     this.formLines = newFormLines;
   }
 
-  load(callback) {
-    this.loading = true;
-    this.service.getTrainerJockeyForm(this.periodDays)
-      .then(res => {
-        this.loading = false;
-        const data: TrainerJockey[] = JSON.parse(JSON.stringify(res));
-        this.formLines = data;
-        this.orgFormLines = data;
-      })
-      .catch(err => {
-        this.loading = false;
-        // check for status code 401 unauthorized
-        if (err.status === 401 || err.status === 403) {
-          localStorage.removeItem(this.service.localStorageTokenKey);
-        }
-      });
-  }
-
-  constructor(private service: TrainerJockeyService) {
+  private load(attempts = 0) {
+    if (attempts <= 1) {
+      this.loading = true;
+      this.service.getTrainerJockeyForm(this.periodDays)
+        .then(res => {
+          this.loading = false;
+          const data: TrainerJockey[] = JSON.parse(JSON.stringify(res));
+          this.formLines = data;
+          this.orgFormLines = data;
+        })
+        .catch(err => {
+            console.warn('Failed to fetch trainer jockey stats probably due to invalid token, so re-attempting');
+            this.load(1);
+        });
+    } else {
+      this.loading = false;
+      this.router.navigate(['/error']);
+    }
   }
 
   ngOnInit() {
-    this.load(formlines => {
-      this.formLines = formlines;
-      this.orgFormLines = formlines;
-    });
+    this.load();
   }
 
   filterForm = filter => {
@@ -100,9 +99,6 @@ export class FormlinesComponent implements OnInit {
 
   periodChanged = filter => {
     this.periodDays = filter.days;
-    this.load(formlines => {
-      this.formLines = formlines;
-      this.orgFormLines = formlines;
-    });
+    this.load();
   }
 }

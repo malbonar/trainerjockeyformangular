@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:44303/api/'
+  apiUrl: 'https://mbsoftwarehorseracingcoreapi.azurewebsites.net/api/', // 'https://localhost:44303/api/',
+  raceResultLoadStatusUrl: 'https://raceresultloadstatusservice.azurewebsites.net/api/'
 };
 
 /*

@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="loadstatusselector mt-5">
+        <h5 class="mr-3">Race Result Import Status</h5>
+        <p-calendar [(ngModel)]="loadStatusDate" dateFormat="dd.mm.yy" [showIcon]="true"
+            (onSelect)="loadStatusDateSelected($event)" ></p-calendar>
+    </div>
+    <div class="loadstatusesgrid mt-3">
+        <div *ngIf="loading">Loading Race Result Load Statuses</div>
+        <h6 class="text-warning" 
+            *ngIf="showNoRaceResultsLoaded()">No race results loaded for selected date</h6>
+        <div *ngIf="statuses.length > 0">
+            <div class="table-responsive">
+                <table class="table table-sm table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Link</th>
+                            <th>Imported</th>                            
+                            <th>Error</th>
+                            <th>Select</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let status of statuses; let idx = index">
+                        <tr [ngClass]="{ 'table-success': status.selected }">
+                            <td> {{ status.resultLinkUrl }}</td>
+                            <td> {{ status.isLoaded }} </td>
+                            <td> {{ status.errorReason }} </td>
+                            <td><input type="checkbox" 
+                                name="'row'+ status.raceResultLoadStatusId"
+                                [(ngModel)]="status.selected"
+                                (click)="statusSelected(idx)">&nbsp;</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div> 
+</div>

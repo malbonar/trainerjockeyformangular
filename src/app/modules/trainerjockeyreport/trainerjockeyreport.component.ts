@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { FormlinesComponent } from '../formlines/formlines.component';
+import { FormlinesComponent } from './components/formlines/formlines.component';
 
 @Component({
   selector: 'app-trainerjockeyreport',

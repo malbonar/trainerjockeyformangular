@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../environments/environment';
-import { AccessToken } from 'src/Models/AccessToken';
+import { environment } from '../../../../environments/environment';
+import { AccessToken } from 'src/app/shared/models/AccessToken';
 
 const apiUrl = environment.apiUrl + 'TrainerJockeyForm';
 
@@ -22,7 +22,11 @@ export class TrainerJockeyService {
     // but also allowing passing parameters between observables
     return this.getAccessToken()
       .pipe(flatMap((token) => this.gettrainerJockeyFormData(days, token.access_token)))
-      .toPromise();
+      .toPromise()
+      .then(result => result)
+      .catch(err => {
+        localStorage.removeItem(this.localStorageTokenKey);
+      });
   }
 
   private gettrainerJockeyFormData(days: number, token: string) {
@@ -31,7 +35,7 @@ export class TrainerJockeyService {
       localStorage.setItem(this.localStorageTokenKey, token);
     }
 
-    return this.http.get(`${apiUrl}?days=${days}&racedate=${new Date().toISOString().slice(0, 10)}`,
+    return this.http.get(`${apiUrl}/getLatest?days=${days}`,
       {
         headers: {'authorization': `Bearer ${token}` }
       });
@@ -43,7 +47,7 @@ export class TrainerJockeyService {
       return this.http.post<AccessToken>('https://mbsoftwaresolutions.auth0.com/oauth/token',
         '{' +
           '"client_id":"bpMT9xoHPbbh9kKuc1TBWQKwzCeFanJG",' +
-          '"client_secret":"ENTER YOUR CLIENT SECRET HERE",' +
+          '"client_secret":"QHtBFEnJgqdzghmYE9AXOQTiwm5Zp-1a988k4XowZLbnXdj4owOdRC-rXr4_qr3X",' +
           '"audience":"https://horseracing/",' +
           '"grant_type":"client_credentials"' +
         '}',
