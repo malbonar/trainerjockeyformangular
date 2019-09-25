@@ -3,6 +3,14 @@
         <h5 class="mr-3">Race Result Import Status</h5>
         <p-calendar [(ngModel)]="loadStatusDate" dateFormat="dd.mm.yy" [showIcon]="true"
             (onSelect)="loadStatusDateSelected($event)" ></p-calendar>
+        <button *ngIf="statuses.length > 0" type="button" class="btn btn-warning ml-5" 
+            [ngClass]="{'disabled': selectedStatus.isLoaded }"
+            (click)="reloadStatus()" >
+            Re-Import</button>
+        <button *ngIf="statuses.length > 0" type="button" class="btn btn-danger ml-3" 
+            [ngClass]="{'disabled': selectedStatus.isLoaded }"
+            (click)="deleteStatus()" >
+            Delete</button>
     </div>
     <div class="loadstatusesgrid mt-3">
         <div *ngIf="loading">Loading Race Result Load Statuses</div>

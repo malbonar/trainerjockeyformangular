@@ -13,7 +13,15 @@ export class RaceResultLoadStatusComponent implements OnInit {
     loadStatusDate: Date;
     statuses: RaceResultLoadStatus[] = [];
     loading: Boolean = false;
-    selectedRowId = 0;
+    selectedRowId = -1;
+    selectedStatus: RaceResultLoadStatus = {
+        raceResultLoadStatusId: 0,
+        raceDate: null,
+        resultLinkUrl: '',
+        isLoaded: true,
+        errorReason: '',
+        selected: false
+    };
 
     constructor(private state: StateService,
         private statusService: RaceResultLoadStatusService,
@@ -32,6 +40,7 @@ export class RaceResultLoadStatusComponent implements OnInit {
 
     loadStatusDateSelected() {
         this.loading = true;
+        this.setSelectedItemToEmpty();
         this.state.setLoadStatusDate(this.loadStatusDate);
         this.statusService.getRaceResultLoadStatuses(this.loadStatusDate)
             .toPromise()
@@ -57,8 +66,59 @@ export class RaceResultLoadStatusComponent implements OnInit {
     }
 
     statusSelected(rowId) {
-        this.statuses[this.selectedRowId].selected = false;
-        this.selectedRowId = rowId;
-        this.statuses[this.selectedRowId].selected = true;
+        if (this.selectedRowId !== rowId) {
+            if (this.selectedRowId >= 0) { // initilized to -1 so ignore if first time selected
+                this.statuses[this.selectedRowId].selected = false;
+            }
+            this.selectedRowId = rowId;
+            this.statuses[this.selectedRowId].selected = true;
+            this.selectedStatus = this.statuses[this.selectedRowId];
+        } else {
+            this.setSelectedItemToEmpty();
+            this.selectedRowId = 0;
+        }
+    }
+
+    reloadStatus() {
+        if (this.selectedStatus.raceResultLoadStatusId !== 0) {
+            this.handleServiceResponse(
+                this.statusService.reloadRaceResult(this.loadStatusDate, this.selectedStatus.resultLinkUrl,
+                    this.selectedStatus.raceResultLoadStatusId));
+        }
+    }
+
+    deleteStatus() {
+        if (this.selectedStatus.raceResultLoadStatusId !== 0) {
+            this.handleServiceResponse(
+                this.statusService.deleteRaceResultStatus(this.selectedStatus.raceResultLoadStatusId));
+        }
+    }
+
+    // both reload and delete have same behavior to service response so put in common method
+    private handleServiceResponse(response: Promise<object>) {
+        response
+        .then(_ => {
+            this.statuses.splice(this.selectedRowId, 1);
+            this.setSelectedItemToEmpty();
+            this.selectedRowId = -1; // otherwise buttons don't disable correctly as this is still old value
+        })
+        .catch(err => {
+            if (err.status === 404) {
+                this.router.navigate(['/pagenotfound']);
+            } else {
+                this.router.navigate(['/error']);
+            }
+        });
+    }
+
+    private setSelectedItemToEmpty() {
+        this.selectedStatus = {
+            raceResultLoadStatusId: 0,
+            raceDate: null,
+            resultLinkUrl: '',
+            isLoaded: true,
+            errorReason: '',
+            selected: false
+        };
     }
 }
