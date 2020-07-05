@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import createAuth0Client from '@auth0/auth0-spa-js';
 import Auth0Client from '@auth0/auth0-spa-js/dist/typings/Auth0Client';
-import { from, of, Observable, BehaviorSubject, combineLatest, throwError } from 'rxjs';
+import { from, Observable, combineLatest, throwError } from 'rxjs';
 import { tap, catchError, concatMap, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,8 @@ export class AuthService {
   // Create an observable of Auth0 instance of client
   auth0Client$ = (from(
     createAuth0Client({
-      domain: "mbsoftwaresolutions.auth0.com",
-      client_id: "Edo9RFsNh27ODJ9Xas4WKpxYFyKO6uHg",
+      domain: environment.auth0Domain,
+      client_id: environment.auth0ClientId,
       redirect_uri: `${window.location.origin}/callback`
     })
   ) as Observable<Auth0Client>).pipe(
@@ -52,11 +53,10 @@ export class AuthService {
     // A desired redirect path can be passed to login method
     // (e.g., from a route guard)
     // Ensure Auth0 client instance exists
-    console.log(`${window.location.origin}/logincallback`);
     this.auth0Client$.subscribe((client: Auth0Client) => {
       // Call method to log in
       client.loginWithRedirect({
-        redirect_uri: `${window.location.origin}/logincallback`,
+        redirect_uri: `${window.location.origin}/${environment.callbackUrl}`,
         appState: { target: redirectPath }
       });
     });
@@ -74,9 +74,7 @@ export class AuthService {
       }),
       concatMap(() => {
         // Redirect callback complete; get user and login status
-        return combineLatest(
-          this.isAuthenticated$
-        );
+        return combineLatest([this.isAuthenticated$]);
       })
     );
     // Subscribe to authentication completion observable
@@ -92,7 +90,7 @@ export class AuthService {
     this.auth0Client$.subscribe((client: Auth0Client) => {
       // Call method to log out
       client.logout({
-        client_id: "Edo9RFsNh27ODJ9Xas4WKpxYFyKO6uHg",
+        client_id: environment.auth0ClientId,
         returnTo: window.location.origin
       });
     });
