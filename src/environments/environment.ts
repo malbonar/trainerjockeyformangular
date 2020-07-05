@@ -6,7 +6,10 @@ export const environment = {
   production: false,
   apiUrl: 'https://mbsoftwarehorseracingcoreapi.azurewebsites.net/api/', // 'https://localhost:44303/api/',
   raceResultLoadStatusUrl: 'https://raceresultloadstatusservice.azurewebsites.net/api/',
-  raceResultServiceUrl: 'https://horseracingimportraceresultfunctions.azurewebsites.net/api/'
+  raceResultImportServiceUrl: 'https://horseracingimportraceresultfunctions.azurewebsites.net/api/',
+  raceResultServiceUrl: 'https://horseracingresultservice.azurewebsites.net/api/',
+  raceLoadStatusUrl: 'https://raceloadstatusservice.azurewebsites.net/api/',
+  callbackUrl: 'logincallback'
 };
 
 /*

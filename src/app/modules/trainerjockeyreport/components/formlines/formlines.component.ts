@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TrainerJockey } from '../../models/TrainerJockey';
 import { TrainerJockeyService } from '../../services/TrainerJockeyService';
+import { StateService } from '../../../../shared/services/state.service';
+import { TrainerJockeyHorse } from '../../models/TrainerJockeyHorse';
+import { RaceCardService } from '../../../../modules/racecard/services/RaceCardService';
 
 @Component({
   selector: 'app-formlines',
@@ -14,10 +17,27 @@ export class FormlinesComponent implements OnInit {
   formLines: TrainerJockey[]; // data bound to this
   loading: Boolean = false;
   periodDays = 14;
+  filter: any;
 
-  constructor(private service: TrainerJockeyService, private router: Router) {}
+  constructor(
+    private service: TrainerJockeyService,
+    private raceCardService: RaceCardService,
+    private router: Router,
+    private state: StateService) {}
 
-  runFilter = filter => {
+  ngOnInit() {
+    const trainerJockeys = this.state.getTrainerJockeys();
+    if (trainerJockeys.length === 0) {
+      this.load();
+    } else {
+      this.formLines = trainerJockeys;
+      this.orgFormLines = trainerJockeys;
+      this.loading = false;
+    }
+    this.filterForm(this.state.getTrainerJockeyFilter());
+  }
+
+  private runFilter = filter => {
     let newFormLines = this.orgFormLines;
     if (filter.days !== undefined) {
       this.periodDays = filter.days;
@@ -72,10 +92,10 @@ export class FormlinesComponent implements OnInit {
           const data: TrainerJockey[] = JSON.parse(JSON.stringify(res));
           this.formLines = data;
           this.orgFormLines = data;
+          this.state.setTrainerJockeys(data);
         })
-        .catch(err => {
+        .catch(_ => {
             console.warn('Failed to fetch trainer jockey stats probably due to invalid token, so re-attempting');
-            this.load(1);
         });
     } else {
       this.loading = false;
@@ -83,11 +103,8 @@ export class FormlinesComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-    this.load();
-  }
-
   filterForm = filter => {
+    this.filter = filter;
     if (filter !== undefined) {
         this.runFilter(filter);
     }
@@ -100,5 +117,22 @@ export class FormlinesComponent implements OnInit {
   periodChanged = filter => {
     this.periodDays = filter.days;
     this.load();
+  }
+
+  showRaceCard(horse: TrainerJockeyHorse): void {
+    // store filter first
+    this.state.setTrainerJockeyFilter(this.filter);
+
+    this.raceCardService.fetchRaceCard(horse.course, horse.raceTime)
+      .subscribe(
+        (race) => {
+          race.horses = race.horses.sort((a, b) => a.decimalOdds > b.decimalOdds ? 1 : -1);
+          this.state.setRaceCard(race);
+          this.router.navigate(['/racecard']);
+        },
+        (err) => {
+
+        }
+      );
   }
 }

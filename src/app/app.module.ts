@@ -7,7 +7,6 @@ import { DropdownModule } from 'primeng/primeng';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {CalendarModule} from 'primeng/calendar';
-//import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +25,20 @@ import { NavBarComponent } from './shared/components/navbar/navbar.component';
 import { RaceResultLoadStatusComponent } from './modules/admin/components/raceresultloadstatus/raceresultloadstatus.component';
 import { HomeComponent } from './modules/home/home.component';
 import { ErrorComponent } from './shared/components/error/error.component';
+import { RaceResultsComponent } from './modules/results/components/raceresults/raceresults.component';
+import { RaceMeetingSummaryResultsComponent } from './modules/results/components/racemeetingsummaryresults/racemeetingsummaryresults.component';
+import { RaceResultSummaryComponent } from './modules/results/components/raceresultsummary/raceresultsummary.component';
+import { RaceResultDetailComponent } from './modules/results/components/raceresultdetail/raceresultdetail.component';
+import { RaceMeetingComponent } from './modules/results/components/racemeeting/racemeeting.component';
+import { ImportstatsComponent } from './modules/admin/components/importstats/importstats.component';
+import { RaceCardMeetingsComponent } from './modules/racecard/components/racecard-meetings/racecard-meetings.component';
+import { RaceCardMeetingComponent } from './modules/racecard/components/racecard-meeting/racecard-meeting.component';
+import { RaceCardComponent } from './modules/racecard/components/racecard/racecard.component';
+import { RaceLoadStatusComponent } from './modules/admin/components/raceloadstatus/race-load-status.component';
+import { HorseHistoryLoadStatusComponent } from './modules/admin/components/horse-history-load-status/horse-history-load-status.component';
+import { RacecardHorseStatsComponent } from './modules/racecard/components/racecard-horse-stats/racecard-horse-stats.component';
+import { RacecardHorseHistoryComponent } from './modules/racecard/components/racecard-horse-history/racecard-horse-history.component';
+import { HorsesForConditionsComponent } from './modules/betting-angles/horses-for-conditions/horses-for-conditions.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +57,21 @@ import { ErrorComponent } from './shared/components/error/error.component';
     LoginCallbackComponent,
     NavBarComponent,
     HomeComponent,
-    ErrorComponent
+    ErrorComponent,
+    RaceResultsComponent,
+    RaceMeetingSummaryResultsComponent,
+    RaceResultSummaryComponent,
+    RaceResultDetailComponent,
+    RaceMeetingComponent,
+    ImportstatsComponent,
+    RaceCardMeetingsComponent,
+    RaceCardMeetingComponent,
+    RaceCardComponent,
+    RaceLoadStatusComponent,
+    HorseHistoryLoadStatusComponent,
+    RacecardHorseStatsComponent,
+    RacecardHorseHistoryComponent,
+    HorsesForConditionsComponent,
   ],
   imports: [BrowserModule,
     AppRoutingModule,

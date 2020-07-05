@@ -1,0 +1,61 @@
+ .container {
+    max-width: 1160px;
+ }
+
+.card {
+    flex: 0 0 0;
+    box-sizing: border-box;
+    margin: 1rem .25em;
+}
+
+.raceMeeting {
+	background: #708090;
+	color: white;
+	font-family: "Tahoma";
+    box-shadow: 4px 4px 6px #555555;    
+    height: 100%;
+}
+
+.raceMeetingHeader {
+    padding-top: 10px;
+}
+
+.raceMeetingCourseHeader {
+    text-align: center;
+    font-weight: 200;
+    display: inline;
+    padding-right: 30px;
+    padding-left: 30px;
+    color: #CACFD4;
+}
+
+.raceMeetingCourseHeader:hover {
+    background-color: #aaaaaa;  
+    color: white;
+}
+			
+.raceMeetingGoing {
+	text-align: right;
+	font-size: 9pt;
+	display: inline;
+}
+
+.raceMeetingRaceCol {
+    vertical-align: top;
+    font-size: 0.75em;
+     white-space: nowrap;    
+} 
+ 
+.raceName {
+    max-width: 420px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+} 
+ 			
+.race td {
+	padding-left: 10px;
+}
+			
+.race tr:hover {
+    background-color: #aaaaaa;  
+} 

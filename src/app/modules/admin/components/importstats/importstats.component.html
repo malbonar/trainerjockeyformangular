@@ -1,0 +1,60 @@
+<div class="container">    
+    <h5 class="mt-5">Re-Import Horse Stats</h5>
+    <div class="importstatsselector mt-3">
+        <span class="mr-3 next-to-a-calendar">Select Date: </span>
+        <p-calendar class="calendar" [(ngModel)]="importStatDate" dateFormat="dd.mm.yy" [showIcon]="true"
+            (onSelect)="importStatDateSelected()" ></p-calendar>
+
+        <div class="inline ml-2 ">
+            <label *ngIf="courses.length > 0" class="col-form-label ml-2">Course</label>
+            <select *ngIf="courses.length > 0" 
+                class="ml-2 inline courseselector"
+                id="coursesSelect"
+                type="submit" 
+                [ngModel]="selectedCourse" 
+                (ngModelChange)="onSelectedCourseChange($event)">
+                <option *ngFor="let course of courses">{{ course }}</option>
+            </select>
+        </div>
+
+        <div class="inline ml-2">
+            <label *ngIf="raceTimes.length > 0" class="col-form-label ml-2">Race Time</label>
+            <select *ngIf="raceTimes.length > 0" 
+                    class="ml-2 inline courseselector"
+                    id="raceTimesSelect"
+                    type="submit" 
+                    [ngModel]="selectedRaceTime" 
+                    (ngModelChange)="onSelectedRaceTimeChange($event)">
+                    <option *ngFor="let raceTime of raceTimes">{{ raceTime }}</option>
+                </select>
+        </div>
+        <button *ngIf="raceTimes.length > 0" type="button" 
+            class="btn btn-warning importBtn ml-3"
+            (click)="import()">Import</button>
+    </div>
+    <div *ngIf="loading">
+        <div class="spinner-border text-success" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+    </div>
+    <div *ngIf="horseStats.length > 0" class="importStatsHorseStats mt-3">
+        <table class="table table-responsive">
+            <thead>
+                <th>Horse Name</th>
+                <th>P/L</th>                
+                <th>Decimal Odds</th>
+                <th>Pace</th>
+                <th>Comment</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let horse of horseStats">
+                    <td>{{ horse.horseName }}</td>
+                    <td>{{ horse.profitLoss }}</td>
+                    <td>{{ horse.decimalOdds }}</td>
+                    <td>{{ horse.paceValue }}</td>
+                    <td>{{ horse.comment }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

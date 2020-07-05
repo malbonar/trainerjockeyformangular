@@ -1,0 +1,40 @@
+
+<div class="mt-3 mr-1">
+    <div class="card">
+        <div class="card-header raceSummaryHeader">
+            <div class="raceTime" (click)="showRaceResultDetail()">{{ race.raceTime }}</div>
+            <div class="raceName">{{ race.raceName }}</div>
+            <div class="inline">C{{ race.raceClass }}</div>
+            <div class="raceDistance">{{ race.distance }}</div>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <div class="inline firstPlace text-success largerFont">1st</div>
+                <div class="inline horseName largerFont">{{ winner.horseName }}</div>
+                <div class="inline odds">{{ winner.odds }}</div>
+            </li>
+            <li *ngIf="showSecond" class="list-group-item">
+                <div class="inline">2nd</div>
+                <div class="inline horseName">{{ second.horseName }}</div>
+                <div class="inline odds">{{ second.odds }}</div>
+            </li>
+            <li *ngIf="showThird" class="list-group-item">
+                <div class="inline">3rd</div>
+                <div class="inline horseName">{{ third.horseName }}</div>
+                <div class="inline odds">{{ third.odds }}</div>
+            </li>
+            <li *ngIf="showFourth" class="list-group-item">
+                <div class="inline">4th</div>
+                <div class="inline horseName">{{ fourth.horseName }}</div>
+                <div class="inline odds">{{ fourth.odds }}</div>
+            </li>
+            <li class="list-group-item">
+                <div class="inline">{{ runners }} ran</div>
+                <div *ngIf="race.course.indexOf('(IRE)') === -1" 
+                    class="inline prizeMoney">{{ race.prizeMoney | currency:'GBP' }}</div>
+                <div *ngIf="race.course.indexOf('(IRE)') >= 0" 
+                    class="inline prizeMoney">{{ race.prizeMoney | currency:'EUR' }}</div>
+            </li>
+        </ul>
+    </div>
+</div>

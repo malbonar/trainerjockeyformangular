@@ -1,0 +1,90 @@
+<form class="form-inline">  
+    <label for="courseFilter">Course</label>
+    <select 
+        class="form-control form-control-sm ml-sm-2" 
+        id="courseFilter"
+        [ngModel]="selectedCourseFilter"
+        (ngModelChange)="courseFilterChanged($event)"
+        [ngModelOptions]="{standalone: true}">
+        <option *ngFor="let course of courses">{{ course }}</option>
+    </select>
+    <label class="ml-2" for="goingFilter">Going</label>
+    <select 
+        class="form-control form-control-sm ml-sm-2" 
+        id="goingFilter"
+        [ngModel]="selectedGoingFilter"
+        (ngModelChange)="goingFilterChanged($event)"
+        [ngModelOptions]="{standalone: true}">
+        <option *ngFor="let going of goings">{{ going }}</option>
+    </select>
+    <label class="ml-2" for="minClassFilter">Min Cls</label>
+    <select 
+        class="form-control form-control-sm ml-sm-2" 
+        id="minClassFilter"
+        [ngModel]="selectedMinClassFilter"
+        (ngModelChange)="minClassFilterChanged($event)"
+        [ngModelOptions]="{standalone: true}">
+        <option>All</option>
+        <option>7</option>
+        <option>6</option>
+        <option>5</option>
+        <option>4</option>
+        <option>3</option>
+        <option>2</option>
+        <option>1</option>
+        <option>0</option>
+    </select>
+    <label class="ml-2" for="maxClassFilter">Max Cls</label>
+    <select 
+        class="form-control form-control-sm ml-sm-2" 
+        id="maxClassFilter"
+        [ngModel]="selectedMaxClassFilter"
+        (ngModelChange)="maxClassFilterChanged($event)"
+        [ngModelOptions]="{standalone: true}">
+        <option>All</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>0</option>
+    </select>
+</form>
+<div>
+    <table class="table table-sm table-bordered table-hover mt-2">
+        <thead>
+            <th>RaceDate</th>
+            <th>Course</th>
+            <th>Going</th>
+            <th>Class</th>
+            <th>Dist</th>
+            <th>Btn</th>
+            <th>Position</th>
+            <th>Odds</th>
+            <th>OR</th>
+            <th>TS</th>
+            <th>RPR</th>
+            <th>Type</th>
+            <th>Pace</th>
+            <th>Hcp</th>
+        </thead>
+        <tr *ngFor="let race of previousRuns">
+            <td>{{ race.raceDate | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ race.course }}</td>
+            <td>{{ race.going }}</td>
+            <td>C{{ race.raceClass }}</td>
+            <td>{{ race.distance }}</td>
+            <td>{{ race.distanceBeaten }}</td>
+            <td>{{ race.position }}</td>
+            <td>{{ race.odds }}</td>
+            <td>{{ race.officialRating }}</td>
+            <td>{{ race.ts }}</td>
+            <td>{{ race.rpr }}</td>
+            <td>{{ race.raceType }}</td>
+            <td>{{ race.paceValue }}</td>
+            <td>{{ race.handicap }}</td>
+        </tr>
+    </table>
+</div>

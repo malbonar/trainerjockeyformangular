@@ -1,0 +1,15 @@
+<div class="card raceMeeting mb-1">
+    <div class="raceMeetingHeader">
+        <p class="raceMeetingCourseHeader" (click)="showRacesForMeeting()">{{ raceMeeting.course }}</p>
+        <p class="raceMeetingGoing">{{ raceMeeting.going }}</p>
+        <table class="race">
+            <tr *ngFor="let race of raceMeeting.races; let index = idx" 
+                    (click)="showRaceCard(race)">
+                <td class="raceMeetingRaceCol">{{ race.raceTime }}</td>
+                <td class="raceMeetingRaceCol raceName">{{ race.raceName }}</td>
+                <td class="raceMeetingRaceCol">C{{ race.raceClass }}</td>
+                <td class="raceMeetingRaceCol">{{ race.distance }}</td>
+            </tr>
+        </table>
+    </div>
+</div>

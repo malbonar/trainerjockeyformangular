@@ -1,0 +1,42 @@
+<div class="container">    
+    <h5 class="mt-5">RaceCards Load Status</h5>
+    <button *ngIf="statuses.length > 0" type="button" class="btn btn-warning mt-3 ml-5" 
+        [ngClass]="{'disabled': disableReImport() }"
+        (click)="reloadStatus()" >
+        Re-Import</button>
+
+    <div class="loadstatusesgrid mt-3">
+        <div *ngIf="loading">
+            <div class="spinner-border text-success" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+        </div>
+        <h6 class="text-warning" 
+            *ngIf="showNoRaceResultsLoaded()">No racecards loaded for today</h6>
+        <div *ngIf="statuses.length > 0">
+        <div class="table-responsive">
+            <table class="table table-sm table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Link</th>
+                        <th>Imported</th>                            
+                        <th>Error</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let status of statuses; let idx = index">
+                    <tr [ngClass]="{ 'table-success': status.selected }">
+                        <td> {{ status.raceLinkUrl }}</td>
+                        <td> {{ status.isLoaded }} </td>
+                        <td> {{ status.errorReason }} </td>
+                        <td><input type="checkbox" 
+                            name="'row'+ status.raceLoadStatusId"
+                            [(ngModel)]="status.selected"
+                            (click)="statusSelected(idx)">&nbsp;</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+</div>

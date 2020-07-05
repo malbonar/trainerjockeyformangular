@@ -1,5 +1,9 @@
 <div class="container">
-  <div *ngIf="loading; else elseBlock">Fetching Trainer Jockey data</div>
+  <div *ngIf="loading; else elseBlock">
+      <div class="spinner-border text-success" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+  </div>
   <ng-template #elseBlock>
     <div class="table-responsive">
       <table class="table table-striped table-sm table-bordered">
@@ -21,9 +25,9 @@
         </thead>
         <tbody *ngFor="let formLine of formLines">
             <tr class="clickable" (shown.bs.collapse)="shownEvent()"
-                [attr.id]="'row' + formLine.trainerJockeyComboFormEntityId" 
+                [attr.id]="'row' + formLine.trainerJockeyComboFormId" 
                 data-toggle="collapse" href="#"               
-                [attr.data-target]="'.row' + formLine.trainerJockeyComboFormEntityId">
+                [attr.data-target]="'.row' + formLine.trainerJockeyComboFormId">
               <td class="cell"><i class="pi pi-plus cell" style="font-size: 0.95em"></i></td>
               <td class="cell">{{ formLine.trainer }}</td>
               <td class="cell">{{ formLine.jockey }}</td>
@@ -38,31 +42,29 @@
               <td class="cell">{{ formLine.iv }}</td>
             </tr>
             <tr (shown.bs.collapse)="shownEvent()"
-                [attr.class]="'collapse cell row' + formLine.trainerJockeyComboFormEntityId">
+                [attr.class]="'collapse cell row' + formLine.trainerJockeyComboFormId">
               <td colspan="12">
-                <table class="table table-sm table-bordered">
+                <table class="table table-sm table-bordered table-hover">
                 <thead>
                   <tr>
                     <th>Race Date</th>
                     <th>Course</th>
                     <th>Race Time</th>
-                    <!-- <th>RaceNo</th> -->
                     <th>Horse Name</th>
                     <th>Age</th>
                     <th>Weight</th>
-                    <!-- <th>Odds</th> -->
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="table-light" *ngFor="let horse of formLine.trainerJockeyComboFormHorse">
+                  <tr class="table-light" 
+                    (click)="showRaceCard(horse)"
+                    *ngFor="let horse of formLine.trainerJockeyComboFormHorse">
                     <td>{{ horse.raceDate | date : 'd/M/y' }}</td>
                     <td>{{ horse.course }}</td>
                     <td>{{ horse.raceTime }}</td>
-                    <!-- <td>{{ horse.raceNo }}</td> -->
                     <td>{{ horse.horseName }}</td>
                     <td>{{ horse.age }}</td>
                     <td>{{ horse.weight }}</td>
-                    <!-- <td>{{ horse.odds }}</td> -->
                   </tr>
                 </tbody>
                 </table>

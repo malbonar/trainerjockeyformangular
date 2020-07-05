@@ -1,0 +1,46 @@
+.card {
+    margin: 10px;
+    font-size: 0.8em;
+}
+
+.card-header {
+    font-size: 1.05em;
+}
+
+.raceTime {
+    font-size: 1.10em;
+    padding-right: 10px;
+    display: inline;
+}
+
+.course {
+    /* display: inline; */
+    font-size: 1.40em;
+    font-weight: bold;
+}
+
+.raceName {
+    display: block;
+}
+
+.raceClass {
+    display: inline;
+    padding-right: 10px;
+}
+
+.raceDistance {
+    display: inline;
+    padding-right: 10px;
+}
+
+.raceGoing {
+    display: inline;
+}
+
+.inline {
+    display: inline;
+}
+
+.horseName {
+    font-size: 1.2em;
+}

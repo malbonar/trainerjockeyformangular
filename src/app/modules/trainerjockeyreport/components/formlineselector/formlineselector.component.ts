@@ -11,6 +11,7 @@ import { PercentselectorComponent } from '../percentselector/percentselector.com
 import { ProfitlossselectorComponent } from '../profitlossselector/profitlossselector.component';
 import { IvselectorComponent } from '../ivselector/ivselector.component';
 import { PeriodselectorComponent } from '../periodselector/periodselector.component';
+import { StateService } from '../../../../shared/services/state.service';
 
 @Component({
   selector: 'app-formlineselector',
@@ -46,6 +47,10 @@ export class FormlineselectorComponent implements OnInit, AfterViewInit {
     days: '14'
   };
 
+  filterLoaded = false;
+
+  constructor(private state: StateService) { }
+
   reset = () => {
     setTimeout(() => {
       this.runSelector.value = '';
@@ -60,15 +65,21 @@ export class FormlineselectorComponent implements OnInit, AfterViewInit {
       // this assignment was causing the 'Expression has changed after it was checked' error,
       // which is resolved with the setTimeout and waiting another turn
       this.periodSelector.value = this.filter.days.toString();
-  });
+    });
   }
 
-  constructor() { }
-
-  ngOnInit() {}
+  ngOnInit() {
+    const storedFilter = this.state.getTrainerJockeyFilter();
+    if (storedFilter !== null && storedFilter !== undefined) {
+      this.filter = storedFilter;
+      this.filterLoaded = true;
+    }
+  }
 
   ngAfterViewInit() {
-    this.reset();
+    if (!this.filterLoaded) {
+      this.reset();
+    }
   }
 
   onChanged(e) {

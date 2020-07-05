@@ -1,0 +1,45 @@
+
+.raceSummaryResultsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.raceResultSummary {
+    width: 550px; /* keeps uniform size */
+}
+
+@media (max-width: 719.9px) and (min-width: 480px) {
+    .raceSummaryResultsContainer {
+        width: 480px;
+    }
+    .raceResultSummary {
+        width: 450px; 
+    }
+}
+
+@media (max-width: 1129.9px) and (min-width: 720px) {
+    .raceSummaryResultsContainer {
+        width: 720px;
+    }
+    .raceResultSummary {
+        width: 690px; 
+    }
+}
+
+@media (min-width: 1130px) {
+    .raceSummaryResultsContainer {
+        width: 1130px; /* enough for 2 result summaries */
+    }
+    .raceResultSummary {
+        width: 500px; 
+    }
+    .container {
+        padding: 0px;
+    }
+}

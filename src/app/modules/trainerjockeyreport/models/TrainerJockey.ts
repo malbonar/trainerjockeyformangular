@@ -1,7 +1,7 @@
 import { TrainerJockeyHorse } from './TrainerJockeyHorse';
 
 export class TrainerJockey {
-  trainerJockeyComboFormEntityId: number;
+  trainerJockeyComboFormId: number;
   trainer: string;
   jockey: string;
   runs: number;

@@ -1,0 +1,79 @@
+<div class="card">
+    <div class="card-header">
+        <h5>Racecard</h5>
+        <div class="course">{{ race.course }}</div>
+        <div class="raceTime">{{ race.raceTime }}</div>
+        <div class="raceName">{{ race.raceName }}</div>
+        <div class="raceClass">C{{ race.raceClass }}</div>
+        <div class="raceDistance">{{ race.distance }}</div>
+        <div class="raceGoing">{{ race.going }}</div>
+    </div>
+    <div class="card-body">
+        <table class="table table-responsive table-sm">
+            <thead>
+                <tr>
+                    <th>Horse</th>
+                    <th>Age</th>
+                    <th>Weight</th>
+                    <th>HG</th>
+                    <th>Jockey</th>
+                    <th>Claim</th>
+                    <th>Trainer</th>
+                    <th>OR</th>
+                    <th>TS</th>
+                    <th>RPR</th>
+                    <th>Odds</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let horse of race.horses">
+                <tr>
+                    <td>
+                        <div class="horseName">
+                            {{ horse.horseName }}
+                        </div>
+                        <div>
+                            <div class="badge badge-success inline"
+                                (click)="showHorseHistory(horse.horseName)">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <div class="badge badge-success inline ml-2"
+                                (click)="showHorseStats(horse.horseName)">
+                                <i class="fa fa-line-chart"></i>
+                            </div>
+                        </div>
+                        
+                    </td>
+                    <td>{{ horse.age }}</td>
+                    <td>{{ horse.weight }}</td>
+                    <td>{{ horse.headGear }}</td>
+                    <td>{{ horse.jockey }}</td>
+                    <td>{{ horse.jockeyClaim }}</td>
+                    <td>{{ horse.trainer }}</td>
+                    <td>{{ horse.officialRating }}</td>
+                    <td>{{ horse.ts }}</td>
+                    <td>{{ horse.rpr }}</td>
+                    <td>{{ horse.odds }}</td>
+                </tr> 
+                <tr *ngIf="displayHorseStats(horse.horseName)">
+                    <td colspan="12">
+                        <app-racecard-horse-stats
+                            [previousRuns]="previousRuns(horse.horseName)"
+                            [class]="race.raceClass"
+                            [going]="race.going"
+                            [distance]="race.distance"
+                            [course]="race.course"
+                            [horse]="horse">
+                        </app-racecard-horse-stats>
+                    </td>
+                </tr>
+                <tr *ngIf="displayHorseHistory(horse.horseName)">
+                    <td colspan="12">
+                        <app-racecard-horse-history
+                            [previousRuns]="previousRuns(horse.horseName)">
+                        </app-racecard-horse-history>
+                    </td>
+                </tr> 
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,8 +1,9 @@
-<div class="container">
-    <div class="loadstatusselector mt-5">
-        <h5 class="mr-3">Race Result Import Status</h5>
-        <p-calendar [(ngModel)]="loadStatusDate" dateFormat="dd.mm.yy" [showIcon]="true"
-            (onSelect)="loadStatusDateSelected($event)" ></p-calendar>
+<div class="container">    
+    <h5 class="mt-5">Race Result Import Status</h5>
+    <div class="loadstatusselector mt-3">
+        <span class="mr-3 next-to-a-calendar">Select Date: </span>
+        <p-calendar class="calendar" [(ngModel)]="loadStatusDate" dateFormat="dd.mm.yy" [showIcon]="true"
+            (onSelect)="loadStatusDateSelected()" ></p-calendar>
         <button *ngIf="statuses.length > 0" type="button" class="btn btn-warning ml-5" 
             [ngClass]="{'disabled': selectedStatus.isLoaded }"
             (click)="reloadStatus()" >
@@ -13,7 +14,11 @@
             Delete</button>
     </div>
     <div class="loadstatusesgrid mt-3">
-        <div *ngIf="loading">Loading Race Result Load Statuses</div>
+        <div *ngIf="loading">
+            <div class="spinner-border text-success" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+        </div>
         <h6 class="text-warning" 
             *ngIf="showNoRaceResultsLoaded()">No race results loaded for selected date</h6>
         <div *ngIf="statuses.length > 0">

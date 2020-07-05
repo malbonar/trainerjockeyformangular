@@ -1,0 +1,14 @@
+.header {
+    font-weight: bold;
+    font-size: 1.1em;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.horse-for-condition-header {
+    font-weight: bold;
+    font-size: 0.95em;
+}
+
+.horse-for-condition-inline {
+    display: inline;
+}

@@ -10,18 +10,35 @@
           </li>
           <li class="nav-item dropdown">
             <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">
-              <i></i> Form Analysis</a>
+              <i class="fa fa-binoculars" ></i> Form</a>
               <div class="dropdown-menu">
-                <a class="dropdown-item" routerLink="trainerjockeyreport">Trainer Jockey Report</a>
+                <a class="dropdown-item" routerLink="trainerjockeyreport"> Trainer Jockey Report</a>
+              </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown"><i></i> View</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" routerLink="racecards"> RaceCards</a>
+              <a class="dropdown-item" routerLink="raceresults"> Racing Results</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-reports"></i> Angles</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" routerLink="horsesForConditions"> Horses for Conditions</a>
               </div>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown">
               <i class="fas fas-question"></i> Admin</a>
               <div class="dropdown-menu">
-                <a class="dropdown-item" *ngIf="auth.loggedIn === false" (click)="auth.login()"> Login</a>
-                <a class="dropdown-item" *ngIf="auth.loggedIn === true" routerLink="raceresultloadstatus" routerLinkActive="router-link-active"  >Race Result Load Status</a>
-                <a class="dropdown-item" *ngIf="auth.loggedIn === true" (click)="auth.logout()" > Logout</a>
+                <a class="dropdown-item" *ngIf="loggedIn() === false" (click)="login()"> Login</a>
+                <a class="dropdown-item" *ngIf="loggedIn() === true" routerLink="raceresultloadstatus" routerLinkActive="router-link-active"  >Race Result Load Status</a>
+                <a class="dropdown-item" *ngIf="loggedIn() === true" routerLink="importstats">Re-Import Horse Stats</a>
+                <a class="dropdown-item" *ngIf="loggedIn() === true" routerLink="raceloadstatus" routerLinkActive="router-link-active">RaceCards Load Status</a>
+                <a class="dropdown-item" *ngIf="loggedIn() === true" routerLink="horsehistoryloadstatus" routerLinkActive="router-link-active">Horse History Load Status</a>
+                <a class="dropdown-item" *ngIf="loggedIn() === true" (click)="logout()" > Logout</a>
               </div>
           </li>
           <li class="nav-item">

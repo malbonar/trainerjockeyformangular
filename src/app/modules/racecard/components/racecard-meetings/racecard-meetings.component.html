@@ -1,0 +1,14 @@
+<div class="container">
+    <h5 class="mt-5">Todays RaceCards ({{ raceDate }})</h5>
+    <div *ngIf="loading" class="mt-3">
+        <div class="spinner-border text-success" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <div class="mt-3 raceMeetings" *ngIf="raceMeetings.length > 0">
+        <app-racecard-meeting *ngFor="let meeting of raceMeetings" 
+            [raceMeeting]="meeting" 
+            class="appMeeting">
+        </app-racecard-meeting>
+    </div>
+</div>

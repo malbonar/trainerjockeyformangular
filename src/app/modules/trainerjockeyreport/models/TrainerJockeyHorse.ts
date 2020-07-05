@@ -1,6 +1,6 @@
 export class TrainerJockeyHorse {
     trainerJockeyComboFormHorseId: number;
-    trainerJockeyComboFormEntityId: number;
+    trainerJockeyComboFormId: number;
     raceDate: Date;
     course: string;
     raceTime: string;

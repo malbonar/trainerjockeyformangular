@@ -1,0 +1,10 @@
+<div class="container">
+    <h5 class="mt-5">Racing Results</h5>
+    <div>{{ raceMeeting.course }}</div>
+    <div>{{ raceMeeting.races[0].raceDate | date:'dd-MMM-y'}}</div>
+    <div class="raceSummaryResultsContainer">
+        <app-raceresultsummary *ngFor="let race of raceMeeting.races" 
+            [race]="race"
+            class="raceResultSummary"></app-raceresultsummary>
+    </div>
+</div>

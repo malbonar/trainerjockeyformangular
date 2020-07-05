@@ -1,0 +1,51 @@
+<div class="card">
+    <div class="card-header">
+        <div class="raceTime">{{ race.raceTime }}</div>
+        <div class="course">{{ race.course }}</div>
+        <br>
+        <div class="raceName">{{ race.raceName }}</div>
+        <div class="raceClass">C{{ race.raceClass }}</div>
+        <div class="raceDistance">{{ race.distance }}</div>
+        <div class="raceGoing">{{ race.going }}</div>
+    </div>
+    <div class="card-body">
+        <table class="table table-responsive table-sm">
+            <thead>
+                <tr>
+                    <th>Pos</th>
+                    <th>Horse</th>
+                    <th>Odds</th>
+                    <th>Age</th>
+                    <th>Dist. Btn</th>
+                    <th>Weight</th>
+                    <th>HG</th>
+                    <th>Jockey</th>
+                    <th>Claim</th>
+                    <th>Trainer</th>
+                    <th>OR</th>
+                    <th>TS</th>
+                    <th>RPR</th>
+                    <th>Comment</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let horse of race.horses">
+                    <td>{{ horse.position }}</td>
+                    <td>{{ horse.horseName }}</td>
+                    <td>{{ horse.odds }}</td>
+                    <td>{{ horse.age }}</td>
+                    <td>{{ horse.distanceBeaten }}</td>
+                    <td>{{ horse.weight }}</td>
+                    <td>{{ horse.headGear }}</td>
+                    <td>{{ horse.jockey }}</td>
+                    <td>{{ horse.jockeyClaim }}</td>
+                    <td>{{ horse.trainer }}</td>
+                    <td>{{ horse.officialRating }}</td>
+                    <td>{{ horse.ts }}</td>
+                    <td>{{ horse.rpr }}</td>
+                    <td>{{ horse.comment }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+
+.raceMeetings {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: -5px;
+}
+
+.appMeeting {
+    min-width: 550px;
+    align-self: stretch;
+    margin: 5px;
+}
+
+.raceResultsSelector {
+    display: inline-flex;
+    align-items: center;
+}

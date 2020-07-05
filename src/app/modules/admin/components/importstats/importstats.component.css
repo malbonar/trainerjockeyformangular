@@ -1,0 +1,13 @@
+.inline {
+    display: inline;
+}
+
+.courseselector {
+    border: 1px solid #a6a6a6;
+    padding: 0.429em;
+    font-size: 14px;
+}
+
+.importBtn {
+    font-size: 14px;
+}
